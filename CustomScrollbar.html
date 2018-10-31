@@ -56,7 +56,7 @@
                 {{msg}}
             </div>
             <div class="myscrollzone">
-                <div class="bar" ref="bar" :style="'top:'+top+'px'"></div>
+                <div @mousedown="handleDrag" class="bar" ref="bar" :style="'top:'+top+'px'"></div>
             </div>
         </div>
     </div>
@@ -73,6 +73,9 @@
                 handleScroll: function (event) {
                     //console.log(event.target.scrollTop/1273.6);
                     this.top = 623*(event.target.scrollTop/1373.6);
+                },
+                handleDrag: function (event) {
+                    console.log(event.clientY)
                 }
             }
         })
