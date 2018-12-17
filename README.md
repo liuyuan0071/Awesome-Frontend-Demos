@@ -6,5 +6,5 @@ fetch proxy demo: https://liuyuan0071.github.io/Demos/fetch_proxy_demo/1115_fetc
 ---
 custom scrollBar: https://liuyuan0071.github.io/Demos/CustomScrollbar/CustomScrollbar.html
 ---
-Vue_SoccerBoard:https://liuyuan0071.github.io/Demos/Soccerboard/index.html                     
+Vue_SoccerBoard足球战术板:https://liuyuan0071.github.io/Demos/Soccerboard/index.html                     
 ---
