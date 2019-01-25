@@ -58,4 +58,11 @@ parseInt()方法：转换为整数。该方法的返回值一定是数字类型�
 
 `parseInt('abc') // NaN`
 
+parseFloat()方法：转化为浮点数。
+
+`parseFloat('3.14') //3.14`
+
+### 3.String:
+
+`'did you say \'hello\'?'   //"did you say 'hello'?"`
                                 
