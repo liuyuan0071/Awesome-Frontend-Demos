@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>xlsx-demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <style>
+        table, th, td{
+            border: 1px solid black;
+        }
+        .arr{
+            background: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <p>上传xlsx文件显示在table中(sheet_to_json)</p>
+        <input type="file" @change="handleChange" />
+        <table v-if="jsonData.length > 0">
+            <tr>
+                <!-- <th>player</th>
+                <th>number</th>
+                <th>position</th>
+                <th>goals</th> -->
+                <th v-for="(value, key, index) in jsonData[0]">{{key}}</th>
+            </tr>
+            <tr v-for="(td, index) in jsonData">
+                <!-- <td>{{item.player}}</td>
+                <td>{{item.number}}</td>
+                <td>{{item.position}}</td>
+                <td>{{item.goals}}</td> -->
+                <td v-for="(value, key, index) in td">{{value}}</td>
+            </tr>
+        </table>
+        <hr>
+        <p>JSON/数组导出xlsx</p>
+        <div class="arr">{{testArr}}</div>
+        <button @click="exportXlsx">导出xlsx</button>
+        <hr>
+        <h3>
+                js-xlsx框架大致内容：json ⇌ worksheet对象 ⇌ workbook对象 ⇌ xlsx文件
+        </h3>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#root',
+            data: {
+                jsonData: [],
+                testArr: [
+                    // {
+                    //     title1: 'title1',
+                    //     title2: 'title2',
+                    //     title3: 'title3',
+                    //     id: 'id'
+                    // },
+                    {
+                        title1: '内容',
+                        tltle2: 'content',
+                        title3: 'content',
+                        id: Math.random()
+                    },
+                    {
+                        title1: '内容',
+                        tltle2: 'content',
+                        title3: 'content',
+                        id: Math.random()
+                    },
+                    {
+                        title1: '内容',
+                        tltle2: 'content',
+                        title3: 'content',
+                        id: Math.random()
+                    },
+                    {
+                        title1: '内容',
+                        tltle2: 'content',
+                        title3: 'content',
+                        id: Math.random()
+                    },
+                ]
+            },
+            mounted(){
+
+            },
+            methods: {
+                handleChange(e){
+                    let file = e.target.files[0]   //获取上传的文件
+                    let reader = new FileReader()  //FileReader
+                    reader.onload = (e) => {    //加载完成回调
+                            let workbook = XLSX.read(e.target.result, {type: 'binary'});
+                            let jsonData = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]])
+                            //console.log(jsonData);
+                            this.jsonData = jsonData;
+                    }
+                    reader.readAsBinaryString(file) //用reader加载文件
+                },
+                exportXlsx(){
+                    let data = this.testArr;
+                    let sheet = XLSX.utils.json_to_sheet(data); //第二个参数可以自定义表头，这里省略{header: ['title1', 'title2', 'title3']}
+                    let workbook = XLSX.utils.book_new();
+                    XLSX.utils.book_append_sheet(workbook, sheet, "test");
+                    XLSX.writeFile(workbook, 'test.xlsx')
+                }
+            },
+        })
+    </script>
+</body>
+</html>
