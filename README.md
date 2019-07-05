@@ -9,3 +9,5 @@
 [SoccerBoard by vue](https://liuyuan0071.github.io/Demos/Soccerboard/index.html)                     
 ---
 [js-xlsx库导入导出xlsx文件](https://liuyuan0071.github.io/Demos/xlsx.html)
+---
+[H5 File API demo(File/Blob转URL)](https://liuyuan0071.github.io/Demos/fileAPI/fileAPI.html)
