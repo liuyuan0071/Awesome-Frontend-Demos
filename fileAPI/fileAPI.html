@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>File API</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+  <style>
+    .preview{
+      background: #f4f4f4;
+    }
+    .preview img{
+      max-width: 300px;
+      max-height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <p>上传图片并预览 fileReader.readAsDataUrl(file or blob)</p>
+    <input type="file" multiple @change="handleImgUpload" />
+    <div class="preview">
+      <p>预览</p>
+      <img v-if="result" :src="result" alt="preview-image">
+    </div>
+    <hr>
+    <p>Blob/File转URL并下载 window.URL.createObjectURL(blob or file)</p>
+    文件内容：<input type="text" v-model="texts"> 文件后缀：<input type="text" v-model="type">
+    <button @click="handleDownload">下载</button>
+    <hr>
+    <h4>总而言之， 任何文件 --> Bolb/File --> url 下载到本地</h4>
+  </div>
+  <script>
+    let vm =  new Vue({
+      el: '#root',
+      data: {
+        result: '',
+        texts: '',
+        type: ''
+      },
+      mounted(){
+
+      },
+      methods: {
+        handleImgUpload(e){
+          let file = e.target.files[0];
+          let reader = new FileReader()
+          reader.onload = (e) => {
+            //console.log(e);
+            this.result = e.target.result;
+          }
+          reader.readAsDataURL(file)
+        },
+        handleDownload(){
+          let blob = new Blob([this.texts]);
+          let a = document.createElement('a');
+          a.href = window.URL.createObjectURL(blob); //blob转url
+          a.download = `${Date.now()}.${this.type}`;
+          document.body.appendChild(a);
+          a.click();
+        }
+      }
+    })
+  </script>
+</body>
+</html>
