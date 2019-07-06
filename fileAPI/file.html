@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>file API</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <style>
+        #file_input{
+            display: none;
+        }
+        .file_input_label{
+            display: inline-block;
+            height: 200px;
+            width: 200px;
+            line-height: 200px;
+            text-align: center;
+            border: 2px dashed lightblue;
+            color: lightblue;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        
+        .preview{
+            background: #f4f4f4;
+        }
+        .preview img{
+            max-width: 300px;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <input id="file_input" @change="handleDrop" type="file" accept="image/*" />
+        <label @dragover.prevent="" @dragenter.prevent="" @drop.prevent="handleDrop" class="file_input_label" for="file_input">拖拽文件到此处上传</label>
+        <hr>
+        <div class="preview">
+            <p>预览</p>
+            <img v-if="result" :src="result" alt="preview">
+        </div>
+        <hr>
+        总结： 将input标签display:none隐藏之后再自定义label样式，监听label的drop事件和input的change事件处理文件上传。
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#root',
+            data: {
+                result: ''
+            },
+            methods: {
+                handleDrop(e){
+                    let file = typeof e.target.files !== 'undefined' ? e.target.files[0] : e.dataTransfer.files[0] ; //判断文件是拖动进来的还是点击选择的
+                    let reader = new FileReader()
+                    reader.onload = (e) => {
+                        this.result = e.target.result;
+                    }
+                    reader.readAsDataURL(file)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
