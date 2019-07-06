@@ -11,3 +11,5 @@
 [js-xlsx库导入导出xlsx文件](https://liuyuan0071.github.io/Demos/xlsx.html) 关于sheetjs库导入导出xlsx文件的demo
 
 [H5 File API demo](https://liuyuan0071.github.io/Demos/fileAPI/fileAPI.html) 关于html5 FileAPI，Blob/File对象可以转url直接下载或显示在页面
+
+[H5 File API拖动上传](https://liuyuan0071.github.io/Demos/fileAPI/file.html) 实现类似UI库中的拖动上传文件
