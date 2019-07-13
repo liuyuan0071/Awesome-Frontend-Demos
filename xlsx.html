@@ -91,12 +91,12 @@
                     let file = e.target.files[0]   //获取上传的文件
                     let reader = new FileReader()  //FileReader
                     reader.onload = (e) => {    //加载完成回调
-                            let workbook = XLSX.read(e.target.result, {type: 'binary'});
+                            let workbook = XLSX.read(e.target.result, {type: 'array'});
                             let jsonData = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]])
                             //console.log(jsonData);
                             this.jsonData = jsonData;
                     }
-                    reader.readAsBinaryString(file) //用reader加载文件
+                    reader.readAsArrayBuffer(file) //用reader加载文件
                 },
                 exportXlsx(){
                     let data = this.testArr;
