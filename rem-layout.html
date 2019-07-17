@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 16px">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>rem响应式布局的实现</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+  <style>
+  h1, div{
+    border: 1px skyblue dashed;
+    text-align: center;
+  }
+  h1{
+    font-size: 40px;
+  }
+  article div{
+    font-size: 3rem;
+  }
+  article img{
+    height: 20rem;
+    width: 20rem;
+  }
+  footer div{
+    font-size: 2rem;
+  }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <header>
+      <h1>title(40px)</h1>
+    </header>
+    <article>
+      <div>content(4rem)</div>
+      <img src="https://cn.vuejs.org/images/logo.png">
+    </article>
+    <footer>
+      <div>footer(2rem)</div>
+    </footer>
+  </div>
+  <script>
+  const vm = new Vue({
+    el: "#root",
+    data(){
+      return {
+      }
+    },
+    mounted(){
+      console.log(window.innerWidth);
+      this.handleResize();
+      window.onresize = this.throttle(this.handleResize);
+    },
+    methods: {
+      throttle(fn, delay = 100){    //节流
+        let last = 0;
+        return function () {
+          let curr = +new Date();
+          if (curr - last > delay) {
+            fn.apply(this, arguments);
+            last = curr;
+          }
+        }
+      },
+      handleResize(){
+        if (window.innerWidth <= 1024 && window.innerWidth >= 411) {
+          console.log('411<923');
+          document.querySelector('html').style.fontSize = '16px';
+        } else if (window.innerWidth < 411) {
+          console.log('<411');
+          document.querySelector('html').style.fontSize = '8px';
+        } else if (window.innerWidth >1024) {
+          console.log('>923');
+          document.querySelector('html').style.fontSize = '32px';
+        }
+      }
+    }
+  })
+  </script>
+</body>
+</html>
