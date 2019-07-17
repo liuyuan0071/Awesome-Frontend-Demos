@@ -14,4 +14,6 @@
 
 [H5 File API拖动上传](https://liuyuan0071.github.io/Demos/fileAPI/file.html) 实现类似UI库中的拖动上传文件
 
-[CSS3 Grid布局](https://liuyuan0071.github.io/Demos/grid-layout.html)
+[CSS3 Grid布局](https://liuyuan0071.github.io/Demos/grid-layout.html) 网格布局学习
+
+[rem布局实现响应式页面](https://liuyuan0071.github.io/Demos/rem-layout.html) rem单位+onresize函数+防抖实现响应式页面
