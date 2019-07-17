@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>grid-layout</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <style>
+    html, body, .grid{
+        height: 100%;
+        width: 100%;
+    }
+    body{
+        margin: 0;
+    }
+    .grid{
+        padding: 1%;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: 200px calc(100% - 400px) 200px; /* 如果三个数一样： repeat(3, 1fr); */ 
+        grid-template-rows: 1fr 2fr 2fr;    /* 比例1:2:2 */
+    }
+    .item{
+        border: 1px skyblue solid;
+        font-size: 30px;
+        text-align: center;
+        color: skyblue;
+    }
+    </style>
+</head>
+<body>
+    <div class="grid">
+        <div class="item" v-for="(item, index) in items" :key="index">{{item}}</div>
+    </div>
+    <script>
+    let vm = new Vue({
+        el: '.grid',
+        data(){
+            return {
+                items: [1,2,3,4,5,6,7,8,9]
+            }
+        },
+        mounted(){
+
+        }
+    })
+    </script>
+</body>
+</html>
