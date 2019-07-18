@@ -16,4 +16,4 @@
 
 [CSS3 Grid布局](https://liuyuan0071.github.io/Demos/grid-layout.html) 网格布局学习
 
-[rem布局实现响应式页面](https://liuyuan0071.github.io/Demos/rem-layout.html) rem单位+onresize函数+防抖实现响应式页面
+[rem布局实现响应式页面](https://liuyuan0071.github.io/Demos/rem-layout.html) rem单位+onresize+节流函数实现响应式页面
