@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>webGL</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/106/three.js"></script>
+    <style>
+    html, body, #root{
+        height: 100%;
+        width: 100%;
+    }
+    body{
+        margin: 0;
+    }
+    #root{
+        overflow: hidden;
+        position: relative;
+    }
+    .control{
+        position: absolute;
+    }
+    span{
+        color:white;
+    }
+    </style>
+</head>
+<body>
+    <div id="root">
+    <div class="control">
+        <div><span>speedX : {{speedX}}</span><button @click="addSpeed('speedX')">up</button><button @click="()=>speedX=(speedX-0.01).toFixed(2)">down</button></div>
+        <div><span>speedY : {{speedY}}</span><button @click="addSpeed('speedY')">up</button><button @click="()=>speedY=(speedY-0.01).toFixed(2)">down</button></div>
+        <span>这是一个threejs学习的demo，创建一个cube，使用requestAnimationFrame递归调用render来实现立方体旋转。</span>
+    </div>
+    </div>
+    <script>
+    const vm = new Vue({
+        el: '#root',
+        data(){
+            return {
+                w: 0,
+                h: 0,
+                scene: {},
+                camera: {},
+                render: {},
+                cube: {},
+                speedX: 0.01,
+                speedY: 0.01
+            }
+        },
+        mounted(){
+            this.scene = this.initSceneLight();
+            this.camera = this.initCamera();
+            this.cube = this.createNewCube(30, 30, 30);
+            this.render = this.initRender();
+            document.getElementById('root').appendChild(this.render.domElement);
+            this.rotateCube();
+        },
+        methods: {
+            initSceneLight(){
+                this.w = window.innerWidth;
+                this.h = window.innerHeight;
+                const scene = new THREE.Scene();
+                var light = new THREE.AmbientLight( 0x404040 );
+                scene.add( light );
+                return scene;
+            },
+            createNewCube(x, y, z){
+                var geometry = new THREE.BoxGeometry( x, y, z );
+                var material = new THREE.MeshBasicMaterial({color: 'pink'});
+                var cube = new THREE.Mesh( geometry, material );
+                this.scene.add( cube );
+                return cube;
+            },
+            initCamera(){
+                const camera = new THREE.PerspectiveCamera(75, this.w/this.h, 0.1, 1000);
+                camera.position.set( 0, 0, 100 );
+                camera.lookAt( 0, 0, 0 );
+                this.scene.add(camera);
+                return camera;
+            },
+            initRender(){
+                const render = new THREE.WebGLRenderer();
+                render.setSize(this.w, this.h);
+                render.render(this.scene, this.camera);
+                return render;
+            },
+            refeshRecder(){
+                this.render.render(this.scene, this.camera);
+            },
+            rotateCube(){
+                this.cube.rotateY(this.speedY);
+                this.cube.rotateX(this.speedX);
+                this.refeshRecder()
+                requestAnimationFrame(this.rotateCube);
+            },
+            addSpeed(xy){
+                const newSpeed = Number(this[xy]) + 0.01;       //解决js隐式类型转换
+                this[xy] = newSpeed.toFixed(2);                 //解决js精度丢失
+            }
+        }
+    })
+    </script>
+</body>
+</html>
