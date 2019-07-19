@@ -21,7 +21,7 @@
 
 [CSS3 Grid布局](https://liuyuan0071.github.io/Awesome-Frontend-Demos/grid-layout.html) 网格布局学习
 
-[rem布局实现响应式页面](https://liuyuan0071.github.io/Awesome-Frontend-Demos/rem-layout.html) rem单位+onresize+节流函数实现响应式页面
+[rem布局实现响应式页面](https://liuyuan0071.github.io/Awesome-Frontend-Demos/rem-layout.html) rem单位+onresize+节流函数实现响应式页面（新增css3媒体查询方法）
 
 [custom scrollBar](https://liuyuan0071.github.io/Awesome-Frontend-Demos/CustomScrollbar/CustomScrollbar.html) 自定义滚动条（未实现）
 
