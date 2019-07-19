@@ -27,4 +27,4 @@
 
 ### three.js 学习
 
-1 [创建一个旋转的立方体](https://liuyuan0071.github.io/Demos/three0719.html)
+1 [创建一个旋转的立方体](https://liuyuan0071.github.io/Demos/threejs0719.html) 初始化场景scene,光线light,镜头camera，创建一个立方体，并用requestAnimationFrame递归调用render让它旋转
