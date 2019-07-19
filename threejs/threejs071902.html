@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>threejs</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/106/three.js"></script>
+  <script src="./GLTFLoader.js"></script>
+  <style>
+  html, body, #root{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+  }
+  #root{
+    overflow: hidden;
+    position: relative;
+  }
+  .control{
+    position: absolute;
+  }
+  .control div span{
+    color: white;
+  }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <div class="control">
+      <div class="x">
+        <span>X:{{x}}</span>
+        <button @click="handleControlerClicked('x', true)">up</button>
+        <button @click="handleControlerClicked('x', false)">down</button>
+      </div>
+      <div class="y">
+        <span>Y:{{y}}</span>
+        <button @click="handleControlerClicked('y', true)">up</button>
+        <button @click="handleControlerClicked('y', false)">down</button>
+      </div>
+      <div class="z">
+        <span>Z:{{z}}</span>
+        <button @click="handleControlerClicked('z', true)">up</button>
+        <button @click="handleControlerClicked('z', false)">down</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: '#root',
+      data(){
+        return {
+          x: 0,
+          y: 0,
+          z: 15
+        }
+      },
+      mounted(){
+        this.initWorld();
+        let material = new THREE.LineBasicMaterial({ color: 0x0000ff });
+        Vue.prototype.loader = new THREE.GLTFLoader();
+        this.loader.load(
+          './mkl.gltf',
+          this.onLoadend,
+          this.onLoading,
+          this.onError
+        )
+      },
+      methods: {
+        initWorld(){
+          const { innerWidth: w, innerHeight: h } = window;
+          const render = new THREE.WebGLRenderer();
+          render.setSize(w, h);
+          document.querySelector('#root').appendChild(render.domElement);
+          const camera = new THREE.PerspectiveCamera(45, w/h, 1, 500);
+          camera.position.set(this.x, this.y, this.z);
+          camera.lookAt(0, 0, 0);
+          const scene = new THREE.Scene();
+          Vue.prototype.camera = camera;
+          Vue.prototype.scene = scene;
+          Vue.prototype.render = render;
+        },
+        refreshRender(){
+          this.render.render(this.scene, this.camera);
+        },
+        changeCameraPosition(x, y, z){
+          this.camera.position.set(x, y, z);
+          this.refreshRender();
+        },
+        handleControlerClicked(xyz, action){
+          let newXyz = Boolean(action) ? (Number(this[xyz]) + 5) : (Number(this[xyz]) - 5);
+          this[xyz] = newXyz;
+          this.changeCameraPosition(this.x, this.y, this.z);
+        },
+        onLoadend(gltf){
+          this.scene.add(gltf.scene);
+          // gltf.animations; // Array<THREE.AnimationClip>
+          // gltf.scene; // THREE.Scene
+          // gltf.scenes; // Array<THREE.Scene>
+          // gltf.cameras; // Array<THREE.Camera>
+          // gltf.asset; // Object
+          this.refreshRender();
+        },
+        onLoading(xhr){
+          console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+        },
+        onError(err){
+          console.log(`An error happened: ${err}`);
+          throw err;
+        }
+      }
+    })
+  </script>
+</body>
+</html>
