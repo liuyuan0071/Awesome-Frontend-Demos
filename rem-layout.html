@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="font-size: 16px">
+<html lang="en"> <!-- style="font-size: 16px" -->
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +23,24 @@
   }
   footer div{
     font-size: 2rem;
+  }
+  /*    
+  方法二 css3媒体查询
+  */
+  @media (min-width: 1024px) {
+    html{
+      font-size: 32px;
+    }
+  } 
+  @media (min-width: 411px) and (max-width: 923px) {
+    html{
+      font-size: 16px;
+    }
+  } 
+  @media (max-width: 411px){
+    html{
+      font-size: 8px;
+    }
   }
   </style>
 </head>
@@ -48,8 +66,8 @@
     },
     mounted(){
       console.log(window.innerWidth);
-      this.handleResize();
-      window.onresize = this.throttle(this.handleResize);
+      //this.handleResize();
+      //window.onresize = this.throttle(this.handleResize);
     },
     methods: {
       throttle(fn, delay = 100){    //节流
