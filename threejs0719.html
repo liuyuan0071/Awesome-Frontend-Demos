@@ -97,8 +97,8 @@
                 requestAnimationFrame(this.rotateCube);
             },
             addSpeed(xy){
-                const newSpeed = Number(this[xy]) + 0.01;       //js精度丢失
-                this[xy] = newSpeed.toFixed(2);                 //js精度丢失
+                const newSpeed = Number(this[xy]) + 0.01;       //解决js隐式类型转换
+                this[xy] = newSpeed.toFixed(2);                 //解决js精度丢失
             }
         }
     })
