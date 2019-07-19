@@ -11,13 +11,13 @@
 
 [fetch-proxy-demo](https://liuyuan0071.github.io/Demos/fetch_proxy_demo/1115_fetch.html) 原生Fetch API 很简单类似axios
               
-### 一些库的学习
+### 一些库和工具
 
 [js-xlsx库导入导出xlsx文件](https://liuyuan0071.github.io/Demos/xlsx.html) 关于sheetjs库导入导出xlsx文件的demo
 
 [SoccerBoard by vue](https://liuyuan0071.github.io/Demos/Soccerboard/index.html) 用vuetifyUI和移动端touch事件实现的SoccerBoard demo     
 
-### CSS 学习
+### CSS系列
 
 [CSS3 Grid布局](https://liuyuan0071.github.io/Demos/grid-layout.html) 网格布局学习
 
