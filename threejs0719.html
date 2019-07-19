@@ -30,8 +30,8 @@
 <body>
     <div id="root">
     <div class="control">
-        <div><span>speedX</span><button @click="()=>speedX=speedX+0.01">up</button><button @click="()=>speedX=speedX-0.01">down</button></div>
-        <div><span>speedY</span><button @click="()=>speedY=speedY+0.01">up</button><button @click="()=>speedY=speedY-0.01">down</button></div>
+        <div><span>speedX : {{speedX}}</span><button @click="addSpeed('speedX')">up</button><button @click="()=>speedX=(speedX-0.01).toFixed(2)">down</button></div>
+        <div><span>speedY : {{speedY}}</span><button @click="addSpeed('speedY')">up</button><button @click="()=>speedY=(speedY-0.01).toFixed(2)">down</button></div>
         <span>这是一个threejs学习的demo，创建一个cube，使用requestAnimationFrame递归调用render来实现立方体旋转。</span>
     </div>
     </div>
@@ -95,6 +95,10 @@
                 this.cube.rotateX(this.speedX);
                 this.refeshRecder()
                 requestAnimationFrame(this.rotateCube);
+            },
+            addSpeed(xy){
+                const newSpeed = Number(this[xy]) + 0.01;       //js精度丢失
+                this[xy] = newSpeed.toFixed(2);                 //js精度丢失
             }
         }
     })
