@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>原生fetch交互</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        let { Component } = React;
+
+        class Fetch extends Component{
+            constructor(props) {
+                super(props);
+                this.state = {
+                    news: [],
+                };
+                this.getNews = this.getNews.bind(this);
+                this.test = this.test.bind(this);
+            }
+
+            getNews(){
+                let x = this;
+                fetch('https://www.easy-mock.com/mock/5bb4ceb7e8e4196a97f0785e/transfer/mainnews')
+                .then((res) => {
+                    return res.json()
+                }).then((res) => {
+                    x.setState({
+                        news: res.msg.tableData,
+                    })
+                })
+            }
+
+            test(){
+                let x = this;
+                let daili = 'https://bird.ioliu.cn/v2/?url=http://www.dongqiudi.com/match/fetch_new?tab=null&date=2018-11-15&scroll_times=0&tz=-8'
+                let nodaili = 'http://www.dongqiudi.com/match/fetch_new?tab=null&date=2018-11-15&scroll_times=0&tz=-8'
+                fetch(daili)
+                .then((res) => {
+                    return res.json()
+                }).then((res)=> {
+                    console.log(res.html);
+                    x.refs.test.innerHTML = res.html
+                })
+            }
+
+            render(){
+
+                const li_style = {
+                    border: '1px solid black'
+                }
+
+                const img_style = {
+                    height: '200px',
+                    width: '300px',
+                }
+
+                return (
+                    <div>
+                        <h3>react 原生fetch交互以及运动代理解决跨域问题</h3>
+                        <p>前几天用cheerio写了一个在前端爬虫的小demo，但是跨域问题始终解决不了。因为纯靠前端是无法解决跨域问题的！！！</p>
+                        <p style={{color: 'darkred'}}>vue-cli中可以配置自带的proxyTable代理解决跨域问题，但那是开发环境下的！！！node中自动生成了一个代理服务器来帮你请求数据！！！</p>
+                        <p>今天在写原生fetch demo的时候发现了一个强大的工具：JsonBird，你去请求他的代理服务器，带上参数url=你实际想请求的服务器，跨域问题就轻松解决了！！！不需要任何服务器端的帮助！</p>
+                        <button onClick={this.getNews}>获取数据</button>
+                        <a onClick={this.test} href="###">点击此处跨域请求！</a>
+                        {
+                            this.state.news.length < 1? <p>暂无数据！！！</p>
+                            :                
+                            <ul>
+                                {
+                                    this.state.news.map((val, index) => 
+                                        (
+                                            <li style={li_style} key={index}>
+                                                <h3>{val.title}</h3>
+                                                <img style={img_style} src={val.imgurl} />
+                                                <p>{val.subti}</p>
+                                                <span>{val.date}</span>
+                                            </li>
+                                        )
+                                    )
+                                }
+                            </ul>
+                        }
+                        <div ref="test">
+                            
+                        </div>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<Fetch />, document.getElementById('root'))
+    </script>
+</body>
+</html>
