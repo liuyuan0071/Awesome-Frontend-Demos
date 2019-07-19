@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SoccerBoard</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+    <style>
+        html, body, #app{
+            height: 100%;
+        }
+        .ti{
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+        }
+        .ti h3{
+            margin: 0;
+        }
+        .board{
+            background: url("background.jpg") no-repeat center;
+            background-size: 100% 100%;
+            height: calc( 100% - 56px );
+            width: 100%;
+            position: relative;
+        }
+        .player{
+            position: absolute;
+            background: pink;
+            border-radius: 40px;
+            height: 40px;
+            width: 40px;
+            line-height: 40px;
+            text-align: center;
+            box-shadow: 0 1px 10px gray;
+            font-size: 20px;
+        }
+        .player:hover{
+            box-shadow: 0 1px 10px black;
+        }
+        .name{
+            margin: 0;
+            line-height: 100%;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <v-toolbar>
+            <v-toolbar-side-icon @click="drawer()"></v-toolbar-side-icon>
+            <v-toolbar-title>SoccerBoard</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-items>
+                <v-btn flat>
+                    <v-icon>send</v-icon>
+                </v-btn>
+            </v-toolbar-items>
+        </v-toolbar>
+        <div class="board">
+            <div class="player" 
+            v-for="(item, index) in players" 
+            :style="`left:${item.x}px;top:${item.y}px`" 
+            @click="handleClick(index)"
+            @touchstart="dragStart(index, $event)"
+            @touchmove="dragging(index, $event)">
+                <span>{{item.number}}</span>
+                <p class="name">{{item.name}}</p>
+            </div>
+        </div>
+        <!-- drawer -->
+        <v-navigation-drawer absolute temporary v-model="drawerShow">
+            <v-list class="ti">
+                <v-avatar :tile="true" size="48"><img src="avatar.png" alt="avatar"></v-avatar>
+                <h3>SoccerBoard</h3>
+            </v-list>
+            <v-list>不好意思，菜单还没有开始写</v-list>
+        </v-navigation-drawer>
+        <!-- dialog -->
+        <v-dialog v-model="dialogShow">
+            <v-card>
+                <v-card-title>请输入球员属性</v-card-title>
+                <v-divider></v-divider>
+                <v-card-text>
+                    <v-text-field label="号码" placeholder="请输入球员号码" v-model="num"></v-text-field>
+                    <v-text-field label="姓名" placeholder="请输入球员姓名" v-model="name"></v-text-field>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn @click="save()" flat>确定</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+    </div>
+
+    <script>
+        let vue = new Vue({
+            el: '#app',
+            data: {
+                drawerShow: false,
+                dialogShow: false,
+                num: '',
+                name: '',
+                index: 0,
+                players: [
+                    {
+                        number: 10,
+                        name: 'liuyuan',
+                        x: 10,
+                        y: 10
+                    },
+                    {
+                        number: 9,
+                        name: 'name9',
+                        x: 10,
+                        y: 10
+                    },
+                    {
+                        number: 8,
+                        name: 'name8',
+                        x: 10,
+                        y: 10
+                    },
+                    {
+                        number: 7,
+                        name: 'name7',
+                        x: 10,
+                        y: 10
+                    },
+                    {
+                        number: 6,
+                        name: 'name6',
+                        x: 10,
+                        y: 10
+                    },
+                    {
+                        number: 5,
+                        name: 'name5',
+                        x: 10,
+                        y: 10
+                    },
+                    {
+                        number: 4,
+                        name: 'name4',
+                        x: 10,
+                        y: 10
+                    },
+                    {
+                        number: 3,
+                        name: 'name3',
+                        x: 10,
+                        y: 10
+                    },
+                    {
+                        number: 2,
+                        name: 'name2',
+                        x: 10,
+                        y: 10
+                    },
+                    {
+                        number: 1,
+                        name: 'name1',
+                        x: 10,
+                        y: 10
+                    },
+                    {
+                        number: 0,
+                        name: 'name0',
+                        x: 10,
+                        y: 10
+                    }
+                ]
+            },
+            methods: {
+                drawer: function () {
+                    this.drawerShow = !this.drawerShow;
+                },
+                dragStart: function (index, e) {
+                    // console.log(index);
+                },
+                dragging: function (index, e) {
+                    e.preventDefault();
+                     this.players[index].x = e.touches[0].pageX -20;
+                     this.players[index].y = e.touches[0].pageY - 76;
+                },
+                handleClick: function (index) {
+                    console.log(index);
+                    this.index = index;
+                    this.name = this.players[index].name;
+                    this.num = this.players[index].number;
+                    this.dialogShow = !this.dialogShow;
+                },
+                save: function () {
+                        this.players[this.index].name = this.name;
+                        this.players[this.index].number = this.num;
+                        this.dialogShow = !this.dialogShow;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
