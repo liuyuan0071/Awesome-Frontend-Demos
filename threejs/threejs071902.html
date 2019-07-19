@@ -89,7 +89,7 @@
           this.refreshRender();
         },
         handleControlerClicked(xyz, action){
-          let newXyz = Boolean(action) ? (Number(this[xyz]) + 1) : (Number(this[xyz]) - 5);
+          let newXyz = Boolean(action) ? (Number(this[xyz]) + 1) : (Number(this[xyz]) - 1);
           this[xyz] = newXyz;
           this.changeCameraPosition(this.x, this.y, this.z);
         },
