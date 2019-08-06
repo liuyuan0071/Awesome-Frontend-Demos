@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>腾讯云</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>  <!-- es6兼容ie -->
+  <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>  <!-- 填补Promise -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+  <style>
+    html, body, #root{
+      height: 100%;
+      width: 100%;
+    }
+    body{
+      margin: 0;
+    }
+    .head_menu{
+      width: 100%;
+      list-style: none;
+      background-color: black;
+      margin: 0;
+      padding: 0;
+      height: 60px;
+    }
+    .head_menu li{
+      float: left;
+      color: white;
+      margin: 0 1%;
+      height: 100%;
+      line-height: 60px;
+      cursor: pointer;
+    }
+    .head_menu .right{
+      float: right;
+    }
+    #right_btn{
+      background: transparent;
+      border: 1px solid #484848;
+      border-radius: 1px;
+      color: white;
+      cursor: pointer;
+    }
+    #input_container{
+      width: 100px;
+      height: 100%;
+      position: relative;
+    }
+    #right_input{
+      width: 100%;
+      height: 20px;
+      background: transparent;
+      border: 1px solid #484848;
+      border-radius: 20px;
+      color: white;
+      padding: 0 2%;
+      box-sizing: border-box;
+    }
+    #search_logo{
+      position: absolute;
+      right: 6px;
+      top: calc(50% - 2.5px);
+      height: 10px;
+      width: 10px;
+    }
+    .banner{
+      height: 180px;
+      background: url('./assets/banner_bg.png');
+      background-size: cover;
+      position: relative;
+    }
+    .texts{
+      position: absolute;
+      width: 100%;
+      height: 108px;
+      top: calc(50% - 54px);
+      text-align: center;
+    }
+    article{
+      background: #f0f2f5;
+      padding: 2% 12%;
+    }
+    #all{
+      color: #999999;
+    }
+    .articles{
+      background: white;
+      padding: 2%;
+    }
+    hr{
+      border: #e1e8f0 0.5px solid;
+    }
+    .title, .tags{
+      cursor: pointer;
+    }
+    .title:hover, .tags:hover{
+      color: #589deb;
+    }
+    .author{
+      margin-right: 2%;
+    }
+    .left{
+      width: 70%;
+      display: inline-block;
+    }
+    .ri{
+      width: 30%;
+      display: inline-block;
+      float: right;
+      padding: 0 2%;
+      box-sizing: border-box;
+    }
+    .ri ul{
+      list-style: none;
+      padding: 0;
+    }
+    .ri ul li{
+      margin: 10px 0;
+      padding-left: 2%;
+      border-left: transparent 5px solid;
+      cursor: pointer;
+    }
+    .ri ul .cati_active{
+      color: #2b8ae8;
+      border-left: #2b8ae8 5px solid;
+    }
+    .tag{
+      padding-left: 2%;
+      border-left: transparent 5px solid;
+    }
+    .more:hover{
+      color: #2b8ae8;
+    }
+    .tag{
+      color: #a9a9a9;
+    }
+    .years{
+      margin: 12% 0;
+      border-bottom: #e4e9f0 1px solid; 
+    }
+    .dy{
+      background: #2277da;
+      border: none;
+      border-radius: 2px;
+      color: white;
+      width: 100px;
+      height: 40px;
+    }
+    footer{
+      background: #f0f2f5;
+      padding: 2% 12%;
+    }
+    .footer_top{
+      height: 50px;
+    }
+    .footer_top hr{
+      border: 1px #dcddde soild;
+    }
+    .ti{
+      font-size: 30px;
+    }
+    .subti{
+      font-size: 15px;
+      color: #b3b3b4;
+    }
+    .footer_more{
+      line-height: 50px;
+      color: #2277da;
+      float: right;
+    }
+    .footer_content img{
+      width: 24.5%;
+    }
+    .copyright{
+      background: black;
+      color: white;
+      height: 60px;
+    }
+    .copyright p{
+      margin: 0;
+      text-align: center;
+      line-height: 60px;
+    }
+    .pagination{
+      margin: 4% 0;
+    }
+    .pagi{
+      border: 1px #808080 solid;
+      display: inline-block;
+      width: 4%;
+      height: 4%;
+      text-align: center;
+      line-height: 30px;
+      margin: 0 1%;
+      color: #808080;
+    }
+    .side{
+      width: 60px;
+    }
+    .menu_btn{
+      display: none;
+      height: 40px;
+      line-height: 40px;
+      padding: 1% 2%;
+    }
+    .menuclose{
+      transform: rotate(180deg);
+    }
+    .menu_item_title{
+      height: 30px;
+      line-height: 30px;
+      background: #f8f8f8;
+      padding: 1% 4%;
+      color: #999999;
+    }
+    .menu_item_child{
+      height: 30px;
+      line-height: 30px;
+      padding: 1% 4%;
+      border-bottom: 1px #f8f8f8 solid;
+    }
+    @media (min-width: 768px) and (max-width: 1000px) {
+      #root{
+        min-width: 1000px;
+      }
+    }
+    @media (max-width: 768px) {
+      .menu_btn{
+        display: block;
+      }
+      .head_menu .right{
+        display: none;
+      }
+      .banner{
+        display: none;
+      }
+      article{
+        padding: 0;
+      }
+      .articles #all{
+        display: none;
+      }
+      .articles .ri{
+        display: none;
+      }
+      .articles .left{
+        width: 100%;
+      }
+      .pagination{
+        display: none;
+      }
+      footer{
+        display: none;
+      }
+      .copyright{
+        background: #f6f6f6;
+        color: #999999;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <header>
+      <ul class="head_menu">
+        <li>云产品</li>
+        <li>云方案</li>
+        <li>云市场</li>
+        <li>云合作</li>
+        <li class="right">
+          <button id="right_btn">管理中心</button>
+        </li>
+        <li class="right">
+          <div id="input_container">
+            <input type="text" id="right_input" />
+            <img id="search_logo" src="./assets/search.png" alt="logo" />
+          </div>
+        </li>
+      </ul>
+    </header>
+    <div class="banner">
+      <div class="texts">
+        <h2>腾云阁</h2>
+        <p>分享技术干货，用心打造云计算技术影响力</p>
+      </div>
+    </div>
+    <div class="mobile_menu">
+      <div @click="popMenuisOpen=!popMenuisOpen" class="menu_btn">
+        <span>{{currentSelectedItem}}</span>
+        <img :class="{menuclose:!popMenuisOpen}" src="./assets/arrow.png" alt="arrow">
+      </div>
+      <div v-if="popMenuisOpen" v-for="(item, index) in menuItems" :key="index" class="mobile_menu_item">
+        <div class="menu_item_title">
+          {{item.title}}
+        </div>
+        <div @click="handleMenuItemClick(child)" v-for="child in item.childs" class="menu_item_child">
+          {{child}}
+        </div>
+      </div>
+    </div>
+    <article>
+      <div class="articles">
+        <p id="all">全部文章</p>
+        <div class="left">
+          <div v-for="(item, index) in articles" key="index" class="item">
+            <h3 class="title">{{item.title}}</h3>
+            <div>
+              <span class="author">{{item.author}}</span>
+              <span>标签：</span><span class="tags" v-for="(i, index) in item.tags">{{i}} </span>
+            </div>
+            <p>
+              {{item.contents}}
+            </p>
+            <div>
+              <img src="./assets/time.png" alt="time">
+              <span>{{item.time}}</span>
+              <img src="./assets/views.png" alt="views">
+              <span>{{item.views}}</span>
+            </div>
+            <hr>
+          </div>
+          <div class="pagination">
+            <div @click="jumpToPage(currentPage-1)" class="pagi side pre">
+              &lt;上一页
+            </div>
+            <div @click="jumpToPage(item)" v-for="item in 9" class="pagi">{{item}}</div>
+            <div @click="jumpToPage(currentPage+1)" class="pagi side next">
+              下一页&gt;
+            </div>
+          </div>
+        </div>
+        <div class="ri">
+          <ul>
+            <li @click="handleActive(index)" v-for="(item, index) in cati" :class="{cati_active:item.active}">
+              {{item.text}}
+            </li>
+          </ul>
+          <div>
+            <p class="tag">标签</p>
+            <ul>
+              <li>开发组件（41）</li>
+              <li>java（41）</li>
+              <li>分布式存储（18）</li>
+              <li>sdk source（23）</li>
+              <li>open source（38）</li>
+              <li>Gnip（58）</li>
+              <li>sdk source（98）</li>
+              <li>qcloud source（58）</li>
+              <li>snip（67）</li>
+              <li class="more">显示更多……</li>
+            </ul>
+            <div class="years">
+              <p class="tag">年份</p>
+              <ul>
+                <li>2016（38）</li>
+                <li>2015（96）</li>
+                <li>2014（43）</li>
+                <li>2013（21）</li>
+                <li>2012（54）</li>
+              </ul>
+            </div>
+            <div class="bottom">
+              <p>文章同步更新到已绑定的个人邮箱</p>
+              <button class="dy">订阅</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    <footer>
+      <div class="footer_top">
+        <span class="ti">大咖分享</span>
+        <span class="subti">大咖陪你吹牛逼</span>
+        <span class="footer_more">更多</span>
+        <hr>
+      </div>
+      <div class="footer_content">
+        <img src="./assets/daka.jpg" alt="daka">
+        <img src="./assets/daka2.jpg" alt="daka">
+        <img src="./assets/daka.jpg" alt="daka">
+        <img src="./assets/daka2.jpg" alt="daka">
+      </div>
+    </footer>
+    <div class="copyright">
+      <p>xx公司版权所有</p>
+    </div>
+  </div>
+  <script type="text/babel">
+    const vm = new Vue({
+      el: '#root',
+      data(){
+        return {
+          currentSelectedItem: '全部文章',
+          popMenuisOpen: false,
+          menuItems: [
+            {
+              title: '推荐',
+              childs: ['全部文章', '精品热文', '官方推荐']
+            },
+            {
+              title: '标签',
+              childs: ['开发组件（41）', 'java（41）', '分布式存储（18）', 'sdk source（23）'],
+            },
+            {
+              title: '年份',
+              childs: ['2016（38）', '2015（96）', '2014（43）']
+            }
+          ],
+          articles: [],
+          cati: [
+            {
+              text: '全部文章',
+              active: true,
+            },
+            {
+              text: '精品热文',
+              active: false,
+            },
+            {
+              text: '官方推荐',
+              active: false,
+            },
+          ],
+          currentPage: 0,
+        }
+      },
+      mounted(){
+        this.getArticlesByPage(this.currentPage);
+      },
+      methods: {
+        handleActive(index){
+          this.cati = this.cati.map((val) => {
+            val.active = false;
+            return val;
+          })
+          this.cati[index].active = true;
+        },
+        getArticlesByPage(pageNum){
+          return axios.get(`https://www.easy-mock.com/mock/5baf4db93f7d2f35f339d14d/example/articles?pageNum=${pageNum}`)
+          .then((res) => {
+            console.log(res.data);
+            this.articles = res.data.data;
+          })
+        },
+        jumpToPage(page){
+          this.currentPage = page;
+          this.getArticlesByPage(page)
+        },
+        handleMenuItemClick(child){
+          this.currentSelectedItem = child;
+          this.popMenuisOpen = false;
+        }
+      }
+    })
+  </script>
+</body>
+</html>
