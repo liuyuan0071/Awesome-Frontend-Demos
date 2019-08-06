@@ -1,4 +1,4 @@
-# Demos
+# Awesome Frontend Demos
 ## 这里是我的前端demo集合
 ### react 学习
 [React-todoList](https://liuyuan0071.github.io/Awesome-Frontend-Demos/notePadDemo_byReact/1110_notepad.html) react学习之todolist
@@ -15,7 +15,7 @@
 
 [js-xlsx库导入导出xlsx文件](https://liuyuan0071.github.io/Awesome-Frontend-Demos/xlsx.html) 关于sheetjs库导入导出xlsx文件的demo
 
-[SoccerBoard by vue](https://liuyuan0071.github.io/Awesome-Frontend-Demos/Soccerboard/index.html) 用vuetifyUI和移动端touch事件实现的SoccerBoard demo     
+[SoccerBoard by vue](https://liuyuan0071.github.io/Awesome-Frontend-Demos/soccerboard_html/index.html) 用vuetifyUI和移动端touch事件实现的SoccerBoard demo     
 
 ### CSS系列
 
