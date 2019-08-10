@@ -41,6 +41,7 @@
 
     .md {
       padding: 0 1%;
+      overflow: scroll;
     }
 
     .md h1,
@@ -65,8 +66,19 @@
       box-sizing: border-box;
     }
 
-    .btn{
+    .pop-btn{
       position: absolute;
+      right: 20px;
+      bottom: 20px;
+    }
+    
+    .pop-btn, .children-btn{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .btn{
       height: 60px;
       width: 60px;
       cursor: pointer;
@@ -74,13 +86,32 @@
       box-shadow: 1px 4px 10px pink;
       background-color: pink;
       color: white;
-      right: 20px;
-      bottom: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: box-shadow 0.5s;
     }
+
+    .child{
+      height: 56px;
+      width: 56px;
+      margin-bottom: 10px;
+      transition: height,width 0.3s;
+    }
+
+    .child label{
+      height: 100%;
+      width: 100%;
+      line-height: 56px;
+      cursor: pointer;
+    }
+
+    .btn img{
+      height: 40px;
+      width: 40px;
+      transition: transform 0.3s;
+    }
+
     .btn:hover{
       box-shadow: 2px 6px 10px lightcoral;
     }
@@ -90,6 +121,15 @@
       background-color: #23241f !important;
       color: #eee !important;
     }
+
+    .rotate{
+      transform: rotate(180deg);
+    }
+
+    .zoom{
+      height: 0;
+      width: 0;
+    }
   </style>
 </head>
 
@@ -98,10 +138,20 @@
     <div class="md" v-html="marked(markdownContent)"></div>
     <div class="edit">
       <textarea placeholder="input here" v-model="markdownContent"></textarea>
-      <div @click="handleSave" class="btn">Save</div>
+      <div class="pop-btn">
+        <div class="children-btn">
+          <div @click="handleSave" :class="{zoom:popBtnShow}" class="btn child">Export</div>
+          <div :class="{zoom:popBtnShow}" class="btn child">
+            <label :class="{zoom:popBtnShow}" for="input-file">Import</label>
+            <input @change="handleImport" style="display: none" type="file" id="input-file" />
+          </div>
+        </div>
+        <div @click="popBtnShow=!popBtnShow" class="btn"><img :class="{rotate:popBtnShow}" src="./pop.png" alt="pop"></div>
+      </div>
     </div>
   </div>
   <script>
+    Vue.config.devtools = true;
     const vm = new Vue({
       el: '#root',
       beforeMount() {
@@ -114,6 +164,7 @@
       },
       data() {
         return {
+          popBtnShow: true,
           markdownContent: '## 这是一个在线markdown编辑器 \n [我的Github(click me)](https://github.com/liuyuan0071) \n ``` \n console.log("hello markdown!"); \n ``` \n >左侧预览，右侧编辑 \n -- \n >点击右下角保存到本地 \n '
         }
       },
@@ -123,6 +174,18 @@
           a.href = URL.createObjectURL(new Blob([this.markdownContent]));
           a.download = `markdown${Date.now()}.md`;
           a.click();
+          this.popBtnShow = true;
+        },
+        handleImport(e){
+          const file = e.target.files[0];
+          if (/[A-Z|0-9|a-z].md/g.test(file.name)) {
+            const fileReader = new FileReader();
+            fileReader.onload = (e) => {
+              this.markdownContent = e.target.result;
+              this.popBtnShow = true;
+            }
+            fileReader.readAsText(file);
+          } else alert('请上传markdown格式的文件！');
         }
       }
     })
