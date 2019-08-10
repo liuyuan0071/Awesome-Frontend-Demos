@@ -16,7 +16,8 @@
 >[js-xlsx库导入导出xlsx文件](https://liuyuan0071.github.io/Awesome-Frontend-Demos/xlsx.html) 关于sheetjs库导入导出xlsx文件的demo
 
 >[SoccerBoard by vue](https://liuyuan0071.github.io/Awesome-Frontend-Demos/soccerboard_html/index.html) 用vuetifyUI和移动端touch事件实现的SoccerBoard demo   
->[Markdown编辑器](https://liuyuan0071.github.io/Awesome-Frontend-Demos/markdownEditor/markdownEditor.html)
+
+>[Markdown编辑器](https://liuyuan0071.github.io/Awesome-Frontend-Demos/markdownEditor/markdownEditor.html) 使用markedjs和highlightjs库开发的在线markdown编辑工具；支持md文件下载到本地
 
 ### CSS系列
 
