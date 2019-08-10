@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>marked</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.7.0/marked.min.js"></script>
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/atom-one-dark-reasonable.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
+  <style>
+    html,
+    body,
+    #root {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    a{
+      color: #0366d6;
+      text-decoration: none;
+    }
+    a:hover{
+      text-decoration: underline;
+    }
+
+    #root {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .md,
+    .edit {
+      width: 50%;
+    }
+
+    .md {
+      padding: 0 1%;
+    }
+
+    .md h1,
+    .md h2{
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+
+    .md blockquote {
+      border-left: .25em solid #dfe2e5;
+      margin-left: 0;
+      padding-left: 1em;
+    }
+
+    .edit {
+      position: relative;
+    }
+
+    .edit textarea {
+      height: 100%;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .btn{
+      position: absolute;
+      height: 60px;
+      width: 60px;
+      border-radius: 50px;
+      box-shadow: 1px 4px 10px pink;
+      background-color: pink;
+      color: white;
+      right: 20px;
+      bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    pre {
+      padding: 2px;
+      background-color: #23241f !important;
+      color: #eee !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <div class="md" v-html="marked(markdownContent)"></div>
+    <div class="edit">
+      <textarea placeholder="input here" v-model="markdownContent"></textarea>
+      <div @click="handleSave" class="btn">Save</div>
+    </div>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: '#root',
+      beforeMount() {
+        hljs.initHighlightingOnLoad();
+        marked.setOptions({
+          highlight: function (code) {
+            return hljs.highlightAuto(code).value;
+          }
+        });
+      },
+      data() {
+        return {
+          markdownContent: '## 这是一个在线markdown编辑器 \n [我的Github(click me)](https://github.com/liuyuan0071) \n ``` \n console.log("hello markdown!"); \n ``` \n >左侧预览，右侧编辑 \n -- \n >点击右下角保存到本地 \n '
+        }
+      },
+      methods: {
+        handleSave(){
+          const a = document.createElement('a');
+          a.href = URL.createObjectURL(new Blob([this.markdownContent]));
+          a.download = `markdown${Date.now()}.md`;
+          a.click();
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
