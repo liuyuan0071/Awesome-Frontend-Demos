@@ -30,3 +30,10 @@
 1. [创建一个旋转的立方体](https://liuyuan0071.github.io/Awesome-Frontend-Demos/threejs/threejs0719.html) 初始化场景scene,光线light,镜头camera，创建一个立方体，并用requestAnimationFrame递归调用render让它旋转
 
 2. [导入一个3d模型，改变摄像机位置](https://liuyuan0071.github.io/Awesome-Frontend-Demos/threejs/threejs071902.html) 用GLTFLoader导入一个麦克雷的模型，封装一些改变摄像机位置的方法；
+
+```
+  const author = {
+    name: "Liuyuan",
+    age: 21
+  }
+```
