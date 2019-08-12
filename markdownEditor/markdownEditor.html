@@ -178,7 +178,7 @@
         },
         handleImport(e){
           const file = e.target.files[0];
-          if (/[A-Z|0-9|a-z].md/g.test(file.name)) {
+          if (/[A-Z|0-9|a-z|\u4e00-\u9fa5].md/g.test(file.name)) {
             const fileReader = new FileReader();
             fileReader.onload = (e) => {
               this.markdownContent = e.target.result;
