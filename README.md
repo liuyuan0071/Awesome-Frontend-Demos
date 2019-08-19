@@ -25,6 +25,8 @@
 
 >[rem布局实现响应式页面](https://liuyuan0071.github.io/Awesome-Frontend-Demos/rem-layout.html) rem单位+onresize+节流函数实现响应式页面（新增css3媒体查询方法）
 
+>[CSS万能的垂直水平居中](https://liuyuan0071.github.io/Awesome-Frontend-Demos/center.html)
+
 >[custom scrollBar](https://liuyuan0071.github.io/Awesome-Frontend-Demos/CustomScrollbar/CustomScrollbar.html) 自定义滚动条（未实现）
 
 ### three.js 学习
