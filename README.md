@@ -21,6 +21,10 @@
 
 ### CSS系列
 
+>[CSS实现打字动画效果](https://liuyuan0071.github.io/Awesome-Frontend-Demos/css_typing.html) 使用ch长度单位和css3动画实现打字的效果
+
+>[CSS毛玻璃背景效果](https://liuyuan0071.github.io/Awesome-Frontend-Demos/css0819.html) 使用CSS3 filter 和::before伪元素实现毛玻璃效果
+
 >[CSS3 Grid布局](https://liuyuan0071.github.io/Awesome-Frontend-Demos/grid-layout.html) 网格布局学习
 
 >[rem布局实现响应式页面](https://liuyuan0071.github.io/Awesome-Frontend-Demos/rem-layout.html) rem单位+onresize+节流函数实现响应式页面（新增css3媒体查询方法）
