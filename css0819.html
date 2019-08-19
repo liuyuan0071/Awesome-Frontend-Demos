@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>毛玻璃效果</title>
+    <style>
+        p{
+            margin: 0;
+        }
+        body{
+            margin: 0;
+        }
+
+        .awesome_bg, .content::before{
+            background: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1566212061212&di=4f7b10c9b7c6aa3d4030523aa2120da2&imgtype=0&src=http%3A%2F%2Fdimg03.c-ctrip.com%2Fimages%2F100p0n000000dywbgA5F4.jpg') fixed;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        .awesome_bg{
+            height: 500px;
+            padding: 4% 2%;
+        }
+
+        .content{
+            position: relative;
+            z-index: 1;
+            background: rgba(255,255,255, 0.5);
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+        }
+        .content::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            filter: blur(4px);
+            z-index: -1;
+        }
+        .content p:last-child{
+            align-self: stretch;
+            text-align: right;
+            padding: 2% 20%;
+            font-size: 20px;
+        }
+
+        .content p:first-child, .content span{
+            font-size: 26px;
+        }
+        
+        .space{
+            height: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="space"></div>
+    <div class="awesome_bg">
+        <div class="content">
+            <p>Lord, I am doing all I can, to be a better man.</p>
+            <span>上帝啊，我竭尽全力，只为成为更好的自己。</span>
+            <p>—— Robbie Williams《better man》</p>
+        </div>
+    </div>
+    <div class="space"></div>
+</body>
+
+</html>
