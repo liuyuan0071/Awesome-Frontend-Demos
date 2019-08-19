@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>万能的垂直水平居中</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ireade/caniuse-embed/caniuse-embed.min.js"></script>
+    <style>
+    body{
+        margin: 0;
+    }
+    .container, .content{
+        border: 1px solid black;
+        box-sizing: border-box;
+    }
+    .container{
+        position: relative;
+    }
+    .content{
+        transform: translate(-50%, -50%);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+    }
+    .controls{
+        position: fixed;
+        top: 10%;
+        right: 10%;
+    }
+    .caniuse{
+        display: flex;
+        flex-direction: row;
+    }
+    .caniuse .item{
+        width: 50%;
+    }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div :style="`height:${container.height}px;width:${container.width}px`" class="container">
+            <div :style="`height:${content.height}px;width:${content.width}px`" class="content">
+                center
+            </div>
+        </div>
+        <hr>
+        <div>
+            <pre>
+                父元素 和 子元素 不定宽高，垂直水平居中方法：
+                <code>
+                    .container{
+                        position: relative;
+                    }
+                    .content{
+                        transform: translate(-50%, -50%);
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                    }
+                </code>
+            </pre>
+            <hr>
+            <p>
+                transform:translate()中的百分比是相对自身的宽高的；而top left margin等属性的百分比是相对父元素的宽高的。
+                因此，借用两种50%可实现不定父元素和子元素宽高的垂直与居中。由此又可衍生出n多种垂直水平居中的方法(使用calc())。
+            </p>
+            <pre>
+                父元素不定宽高，子元素垂直水平居中：
+                <code>
+                    /* absolute方法 */
+                    .content{
+                        height: 100px;
+                        width: 100px;
+                        position: absolute;
+                        top: calc(50% - 50px);
+                        left: calc(50% - 50px);
+                    }
+
+                    /* margin方法 */
+                    .content{
+                        margin-top: calc(50% - 75px);
+                        margin-left: calc(50% - 75px);
+                    }
+                </code>
+            </pre>
+            <pre>
+                子元素不定宽高并垂直水平居中：
+                <code>
+                    .container{
+                        height: 300px;
+                        width: 300px;
+                    }
+                    .content{
+                        translate(calc(150px - 50%), calc(150px - 50%));
+                    }
+                </code>
+            </pre>
+            <hr>
+            <h3>兼容性</h3>
+            <div class="caniuse">
+                <div class="item">
+                    <p class="ciu_embed" data-feature="calc" data-periods="current,past_1,past_2,past_3" data-accessible-colours="false">
+                        <a href="http://caniuse.com/#feat=calc">Can I Use calc?</a> Data on support for the calc feature across the major browsers from caniuse.com.
+                    </p>
+                </div>
+                <div class="item">
+                    <p class="ciu_embed" data-feature="transforms2d" data-periods="current,past_1,past_2,past_3" data-accessible-colours="false">
+                        <a href="http://caniuse.com/#feat=transforms2d">Can I Use transforms2d?</a> Data on support for the transforms2d feature across the major browsers from caniuse.com.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="controls">
+            <div>
+                <label for="container_width">父元素宽度</label>
+                <input v-model="container.width" id="container_width" type="number" step="10" min="150" max="1000">
+                <label for="container_height">父元素高度</label>
+                <input v-model="container.height" id="container_height" type="number" step="10" min="150" max="1000">
+            </div>
+            <div>
+                <label for="content_width">子元素宽度</label>
+                <input v-model="content.width" id="content_width" type="number" step="10" min="0" max="150">
+                <label for="content_height">子元素高度</label>
+                <input v-model="content.height" id="content_height" type="number" step="10" min="0" max="150">
+            </div>
+        </div>
+    </div>
+    <script>
+    let vm = new Vue({
+        el: '#root',
+        data(){
+            return {
+                container: {
+                    height: 300,
+                    width: 300
+                },
+                content: {
+                    height: 150,
+                    width: 150
+                }
+            }
+        },
+    })
+    </script>
+</body>
+</html>
