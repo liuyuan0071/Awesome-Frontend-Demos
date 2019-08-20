@@ -1,4 +1,5 @@
 # Awesome Frontend Demos
+<img src="http://www.dongqiudi.com/images/dqd-logo.png" />
 ## 这里是我的前端demo集合
 ### react 学习
 >[React-todoList](https://liuyuan0071.github.io/Awesome-Frontend-Demos/notePadDemo_byReact/1110_notepad.html) react学习之todolist
