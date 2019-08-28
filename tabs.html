@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>tabs</title>
+  <style>
+    .tabs{
+      font-size: 0;
+      width: 300px;
+      border: 1px solid black;
+    }
+    .head{
+      width: 100%;
+    }
+    .item{
+      height: 40px;
+      box-sizing: border-box;
+      display: inline-block;
+      width: 33.33%;
+      font-size: 16px;
+      line-height: 40px;
+      text-align: center;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+    }
+    .content{
+      font-size: 16px;
+      width: 100%;
+    }
+    .content_item{
+      display: none;
+      height: 100px;
+      line-height: 100px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="tabs">
+    <div class="head">
+      <div class="item">选项1</div>
+      <div class="item">选项2</div>
+      <div class="item">选项3</div>
+    </div>
+    <div class="content">
+      <div class="content_item">
+        内容1
+      </div>
+      <div class="content_item">
+        内容2
+      </div>
+      <div class="content_item">
+        内容3
+      </div>
+    </div>
+  </div>
+  <script>
+    const $ = document.querySelector.bind(document);
+    const $$ = document.querySelectorAll.bind(document);
+    $$('.content_item').forEach((val, index) => {
+      if(index == 0) val.style.display = 'block';
+    });
+    $$('.item').forEach((val, index) => {
+      if(index == 0) val.style.borderBottomColor = 'skyblue';
+      val.addEventListener('click', () => {
+        $$('.item').forEach(val => val.style.borderBottomColor = 'transparent');
+        $$('.content_item').forEach(val => val.style.display = 'none');
+        val.style.borderBottomColor = 'skyblue';
+         $$('.content_item')[index].style.display = 'block';
+      },false);
+    });
+  </script>
+</body>
+</html>
