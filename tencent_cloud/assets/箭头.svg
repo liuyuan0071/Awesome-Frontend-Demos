@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="34px" height="7px" viewBox="0 0 34 7" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>箭头</title>
+    <desc>Created with Sketch.</desc>
+    <g id="箭头" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="矩形" fill="#00A4FF" fill-rule="nonzero" x="2" y="4" width="3" height="2" rx="1"></rect>
+        <rect id="矩形" fill="#00A4FF" fill-rule="nonzero" x="7" y="4" width="24" height="2" rx="1"></rect>
+        <polyline id="路径-3" stroke="#00A4FF" stroke-width="2" stroke-linecap="round" fill-rule="nonzero" points="27.2519531 1 30.942627 4.9934082 29.7402344 5"></polyline>
+    </g>
+</svg>

@@ -1,0 +1,51 @@
+  .menu_left, .menu_left>*, .menu_right>*, .under_menu_left{
+    float: left;
+  }
+  .menu_left{
+    height:100%;
+  }
+  .menu_btn, .divider, .menu_left>img{
+   position: relative;
+   top: calc(50% - 1rem);
+  }
+  .divider{
+    display: inline-block;
+  }
+  .menu_right{
+    float: right;
+  }
+  .under_menu_left{
+    height: 100%;
+    line-height: 5.5rem;
+  }
+  .under_menu img{
+    position: relative;
+    top: calc(50% - 1.5rem);
+  }
+
+  .global, .settings{
+    height: 100%;
+  }
+  .global{
+    line-height: 4rem;
+  }
+  .global img{
+    vertical-align: middle;
+  }
+  .banner_bottom{
+    font-size: 0;
+  }
+  .banner_bottom_tabs{
+    display: inline-block;
+    color: white;
+  }
+  .progress::before{
+    background-color: #FF7B3F;
+  }
+  .logo_item{
+    float: left;
+    width: 20%;
+    text-align: center;
+    font-size: 1.4rem;
+  }
+  

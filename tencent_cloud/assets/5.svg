@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="280px" height="160px" viewBox="0 0 280 160" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>5</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="106.809919%" y1="-8.30317477%" x2="6.53739712%" y2="86.4839275%" id="linearGradient-1">
+            <stop stop-color="#1DA5FF" stop-opacity="0.539968297" offset="0%"></stop>
+            <stop stop-color="#1DA5FF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="86.6627882%" y1="0%" x2="32.7539815%" y2="71.0258449%" id="linearGradient-2">
+            <stop stop-color="#1DA5FF" offset="0%"></stop>
+            <stop stop-color="#1DA5FF" stop-opacity="0.0671422101" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="5" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <polyline id="路径-4" stroke="url(#linearGradient-1)" stroke-width="14" fill-rule="nonzero" transform="translate(186.328690, 119.754972) rotate(12.000000) translate(-186.328690, -119.754972) " points="140.971268 158.682803 168.143974 117.515433 202.38641 140.219623 231.686112 80.8271419 212.679136 87.435224"></polyline>
+        <polyline id="路径-5" stroke="url(#linearGradient-2)" stroke-width="14" fill-rule="nonzero" points="207 88.6168334 251.445001 85 254.857422 119.560547"></polyline>
+    </g>
+</svg>

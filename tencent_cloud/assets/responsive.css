@@ -1,0 +1,54 @@
+@media (max-width: 1200px) {
+  .enterprise_bottom_item{
+    width: 100%;
+    margin: 0;
+  }
+  .other_item{
+    width: 50%;
+    margin: 0;
+  }
+  .rules_item{
+    width: 100%;
+    margin-right: 0;
+  }
+  .servers_left, .servers_right{
+    width: 100%;
+  }
+  .details_left{
+    display: none;
+  }
+  .details_right{
+    width: 100%;
+  }
+}
+
+@media (max-width: 800px) {
+  .footer_de_left{
+    width: 100%;
+  }
+  .footer_bottom_left{
+    width: 100%;
+  }
+  .footer_bottom_right, .footer_de_right{
+    display: none;
+  }
+  .under_menu{
+    display: none;
+  }
+}
+
+@media (max-width: 600px){
+  html{
+    font-size: 8px;
+  }
+  .menu_right, .exp_tabs{
+    display: none;
+  }
+  .details_right>.right_item{
+    width: 100%;
+    margin: 0;
+  }
+  .details_right{
+    float: none;
+  }
+}

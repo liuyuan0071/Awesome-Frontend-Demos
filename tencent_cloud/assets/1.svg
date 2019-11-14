@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="75px" viewBox="0 0 100 75" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>1</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="81.2497256%" y1="11.3943712%" x2="19.0741152%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#1DA5FF" stop-opacity="0.421337183" offset="0%"></stop>
+            <stop stop-color="#1DA5FF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="38.0658793%" y1="1.90785269%" x2="81.2497256%" y2="66.4468731%" id="linearGradient-2">
+            <stop stop-color="#1DA5FF" stop-opacity="0.305508379" offset="0%"></stop>
+            <stop stop-color="#1DA5FF" stop-opacity="0.0671422101" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="87.5689338%" y1="50%" x2="18.6580882%" y2="50%" id="linearGradient-3">
+            <stop stop-color="#1DA5FF" offset="0%"></stop>
+            <stop stop-color="#1DA5FF" stop-opacity="0.0671422101" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="分组-6" transform="translate(9.000000, 14.000000)" fill-rule="nonzero">
+            <path d="M31.4350497,43.3589981 L20,13.4466412 C25.0683926,2.01582845 38.4055268,-3.12496252 49.7893231,1.96436323 C61.1731193,7.05368897 66.2927654,20.4459073 61.2243728,31.8767201 C56.1559802,43.3075328 42.818846,48.4483238 31.4350497,43.3589981 Z" id="椭圆形" stroke="url(#linearGradient-1)" stroke-width="10" stroke-linecap="round"></path>
+            <circle id="椭圆形" stroke="url(#linearGradient-2)" stroke-width="10" cx="14" cy="32" r="14"></circle>
+            <circle id="椭圆形" fill="url(#linearGradient-3)" cx="72" cy="34" r="15"></circle>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="280px" height="160px" viewBox="0 0 280 160" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>6</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="3.78918775%" y1="100%" x2="-3.6202319%" y2="55.3736906%" id="linearGradient-1">
+            <stop stop-color="#C4EBFF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#00A4FF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="69.9429899%" y1="17.2712054%" x2="0%" y2="67.3060826%" id="linearGradient-2">
+            <stop stop-color="#00A4FF" offset="0%"></stop>
+            <stop stop-color="#E0F3FF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="6" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M212,149 C234.643675,149 253,130.643675 253,108 C253,85.3563253 234.643675,67 212,67 C189.356325,67 171,85.3563253 171,108" id="椭圆形" stroke="url(#linearGradient-1)" stroke-width="14" stroke-linecap="round" fill-rule="nonzero" transform="translate(212.000000, 108.000000) rotate(40.000000) translate(-212.000000, -108.000000) "></path>
+        <circle id="椭圆形" fill="#00A4FF" fill-rule="nonzero" cx="171" cy="96" r="7"></circle>
+        <text id="40+" fill="url(#linearGradient-2)" font-family="PingFangSC-Semibold, PingFang SC" font-size="30" font-weight="500">
+            <tspan x="185" y="119">40+</tspan>
+        </text>
+    </g>
+</svg>
