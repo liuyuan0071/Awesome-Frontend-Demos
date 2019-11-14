@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>打字效果</title>
+    <style>
+    body, html, #root{
+        margin: 0;
+        height: 100%;
+        width: 100%;
+    }
+    #root{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    span{
+        display: inline-block;
+        width: 19ch;
+        font: bold 200% Consolas, Monaco, monospace;
+        white-space: nowrap;
+        overflow: hidden;
+        animation: flash 1s infinite, typing 6s steps(19);
+        font-size: 21px;
+        line-height: 21px;
+        border-right: 1.4px solid white;
+    }
+    @keyframes flash{
+        50%{
+            border-right-color: #000;
+        }
+    }
+    @keyframes typing{
+        from{
+            width: 0;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <span>
+            awesome css tricks!
+        </span>
+    </div>
+</body>
+</html>

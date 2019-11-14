@@ -1,4 +1,6 @@
 # Awesome Frontend Demos
+<img src="https://w.wallhaven.cc/full/yj/wallhaven-yjdl2k.png">
+
 ## 这里是我的前端demo集合
 ### react 学习
 >[React-todoList](https://liuyuan0071.github.io/Awesome-Frontend-Demos/notePadDemo_byReact/1110_notepad.html) react学习之todolist
@@ -19,11 +21,25 @@
 
 >[Markdown编辑器](https://liuyuan0071.github.io/Awesome-Frontend-Demos/markdownEditor/markdownEditor.html) 使用markedjs和highlightjs库开发的在线markdown编辑工具；支持md文件下载到本地
 
+### 原生JavaScript
+
+#### Vue用的太多了，写一下原生吧
+
+>[js实现tabs标签页](https://liuyuan0071.github.io/Awesome-Frontend-Demos/tabs.html) 原生js实现tabs标签页切换效果
+
 ### CSS系列
+
+>[CSS实现水球图](https://liuyuan0071.github.io/Awesome-Frontend-Demos/liquidBall.html) 使用CSS3动画实现水球图效果
+
+>[CSS实现打字动画效果](https://liuyuan0071.github.io/Awesome-Frontend-Demos/css_typing.html) 使用ch长度单位和css3动画实现打字的效果
+
+>[CSS毛玻璃背景效果](https://liuyuan0071.github.io/Awesome-Frontend-Demos/css0819.html) 使用CSS3 filter 和::before伪元素实现毛玻璃效果
 
 >[CSS3 Grid布局](https://liuyuan0071.github.io/Awesome-Frontend-Demos/grid-layout.html) 网格布局学习
 
 >[rem布局实现响应式页面](https://liuyuan0071.github.io/Awesome-Frontend-Demos/rem-layout.html) rem单位+onresize+节流函数实现响应式页面（新增css3媒体查询方法）
+
+>[CSS万能的垂直水平居中](https://liuyuan0071.github.io/Awesome-Frontend-Demos/center.html) 使用calc()和transform:translate()实现的垂直水平居中
 
 >[custom scrollBar](https://liuyuan0071.github.io/Awesome-Frontend-Demos/CustomScrollbar/CustomScrollbar.html) 自定义滚动条（未实现）
 

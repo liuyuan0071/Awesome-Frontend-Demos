@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css水球图</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <style>
+    .ball{
+        height: 300px;
+        width: 300px;
+        border: 6px solid lightblue;
+        border-radius: 150px;
+        overflow: hidden;
+        position: relative;
+        text-align: center;
+        line-height: 300px;
+    }
+    .waves{
+        height: 400px;
+        width: 400px;
+        border-radius: 33%;
+        background-color: aqua;
+        position: absolute;
+        margin-top: 50%;
+        animation: rotate 5s infinite linear;
+        opacity: 0.4;
+        transition: margin-top 1s;
+    }
+    .waves:nth-child(3){
+       animation-delay: -4s;
+       background-color: blue;
+       margin-top: 40%;
+    }
+    .waves:nth-child(1){
+       animation-delay: -2s;
+       margin-top: 40%;
+       background-color: skyblue;
+    }
+    .number{
+        position: relative;
+        font-size: 36px;
+        color: lightblue;
+    }
+
+    @keyframes rotate {
+        from{
+            transform: rotate(0deg);
+        }
+        to{
+            transform: rotate(360deg);
+        }
+    }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div class="ball">
+            <div :style="`margin-top:${(1-ratio+0.1)*100}%`" class="waves"></div>
+            <div :style="`margin-top:${(1-ratio)*100}%`" class="waves"></div>
+            <div :style="`margin-top:${(1-ratio+0.1)*100}%`" class="waves"></div>
+            <span class="number">
+                {{ratio*100+'%'}}
+            </span>
+        </div>
+        <div class="control">
+            <input v-model="ratio" type="number" max="1" min="0" step="0.1" />
+        </div>
+    </div>
+    <script>
+    Vue.config.devtools = true;
+    const vm = new Vue({
+        el: '#root',
+        data(){
+            return {
+                ratio: 0.5
+            }
+        }
+    })
+    </script>
+</body>
+</html>
